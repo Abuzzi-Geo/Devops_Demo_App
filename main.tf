@@ -12,11 +12,11 @@ region = "ap-south-1"
 }
 
 resource "aws_s3_bucket" "demo_bucket" {
-bucket = "jenkins-terraform-demo-12345"
+bucket = "jenkins-terraform-demo-28102002"
 }
 
-resource "aws_vpc" "demo_vpc" {
-cidr_block = "10.0.0.0/16"
+data "aws_vpc" "default" {
+  default = true
 }
 
 resource "aws_subnet" "public_subnet" {
