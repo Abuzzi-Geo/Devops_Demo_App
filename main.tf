@@ -26,13 +26,12 @@ data "aws_vpc" "default" {
   default = true
 }
 
-resource "aws_subnet" "public_subnet" {
-  vpc_id     = data.aws_vpc.default.id
-  cidr_block = "172.31.1.0/24"
+data "aws_subnet_ids" "default" {
+  vpc_id = data.aws_vpc.default.id
 }
 
 resource "aws_instance" "ec2" {
   ami           = "ami-0f5ee92e2d63afc18"
   instance_type = "t2.micro"
-  subnet_id     = aws_subnet.public_subnet.id
+  subnet_id     = tolist(data.aws_subnet_ids.default.ids)[0]
 }
