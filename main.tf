@@ -12,7 +12,7 @@ region = "ap-south-1"
 }
 
 resource "aws_s3_bucket" "demo_bucket" {
-bucket = "jenkins-terraform-demo-28102002"
+bucket = "Abraham-terraform-demo-28102002"
 }
 
 data "aws_vpc" "default" {
@@ -20,7 +20,7 @@ data "aws_vpc" "default" {
 }
 
 resource "aws_subnet" "public_subnet" {
-vpc_id = aws_vpc.demo_vpc.id
+vpc_id = data.aws_vpc.default.id
 cidr_block = "10.0.1.0/24"
 }
 
